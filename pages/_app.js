@@ -1,4 +1,5 @@
 import { MoralisProvider } from 'react-moralis';
+import { AmazonProvider } from '../context/AmazonContext';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
@@ -7,7 +8,9 @@ function MyApp({ Component, pageProps }) {
 			serverUrl={process.env.NEXT_PUBLIC_MORALIS_SERVER}
 			appId={process.env.NEXT_PUBLIC_MORALIS_APP_ID}
 		>
-			<Component {...pageProps} />
+			<AmazonProvider>
+				<Component {...pageProps} />
+			</AmazonProvider>
 		</MoralisProvider>
 	);
 }

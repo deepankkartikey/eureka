@@ -5,6 +5,8 @@ import { ConnectButton } from 'web3uikit';
 import logo from '../assets/amazon_logo.png';
 import logoFull from '../assets/amazon_logo_full.png';
 import { FaBox } from 'react-icons/fa';
+import { BsFillBookmarkFill, BsFillPersonFill } from 'react-icons/bs';
+import { AiOutlineHistory } from 'react-icons/ai';
 
 const isAuthenticated = true;
 const username = 'Deepank';
@@ -16,6 +18,11 @@ const Sidebar = () => {
 		profilePicContainer: `flex  rounded-xl items-center justify-center w-full h-full mb-5`,
 		profilePic: `rounded-3xl object-cover`,
 		welcome: ` text-md mb-2 font-bold text-2xl text-white`,
+		walletAddress: `text-xl flex w-full justify-center font-extrabold mb-4`,
+		menu: `flex flex-col w-full h-full px-10 gap-10`,
+		menuItem: `flex items-center text-lg font-bold cursor-pointer gap-2`,
+		amazonLogo: `mr-4 flex object-cover`,
+		companyName: `text-lg font-bold flex flex-1 pl-10 items-center mt-[20px]`,
 		usernameInput: `bg-transparent border-white border-2 rounded-lg w-[80%] py-2 px-4 text-lg mt-[20px] placeholder:text-white focus:outline-none flex justify-center items-center text-white`,
 		username: `flex items-center w-full justify-center`,
 		setNickname: `text-lg font-bold flex flex-1 items-center mt-[20px] mb-[20px] text-white`,
@@ -80,6 +87,23 @@ const Sidebar = () => {
 					<FaBox />
 					Collections
 				</div>
+				<div className={styles.menuItem}>
+					<BsFillBookmarkFill />
+					Saved
+				</div>
+				<div className={styles.menuItem}>
+					<BsFillPersonFill />
+					Profile
+				</div>
+				<Link href="/history">
+					<div className={styles.menuItem}>
+						<AiOutlineHistory />
+						Transaction History
+					</div>
+				</Link>
+			</div>
+			<div className={styles.companyName}>
+				<Image src={logoFull} alt="amazon" height={100} width={100} />
 			</div>
 		</div>
 	);
