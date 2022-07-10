@@ -1,15 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import { ConnectButton } from 'web3uikit';
 import logo from '../assets/amazon_logo.png';
 import logoFull from '../assets/amazon_logo_full.png';
 import { FaBox } from 'react-icons/fa';
 import { BsFillBookmarkFill, BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineHistory } from 'react-icons/ai';
-
-const isAuthenticated = true;
-const username = 'Deepank';
+import { AmazonContext } from '../context/AmazonContext';
 
 const Sidebar = () => {
 	const styles = {
@@ -27,6 +25,19 @@ const Sidebar = () => {
 		username: `flex items-center w-full justify-center`,
 		setNickname: `text-lg font-bold flex flex-1 items-center mt-[20px] mb-[20px] text-white`,
 	};
+
+	// const isAuthenticated = false;
+	// const username = 'Deepank';
+	// const nickname = '';
+
+	const {
+		isAuthenticated,
+		nickname,
+		setNickname,
+		username,
+		handleSetUsername,
+	} = useContext(AmazonContext);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.profile}>

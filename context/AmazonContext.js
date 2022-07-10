@@ -4,5 +4,50 @@ import { useMoralis } from 'react-moralis';
 export const AmazonContext = createContext();
 
 export const AmazonProvider = ({ children }) => {
-	return <AmazonContext.Provider value={{}}>{children}</AmazonContext.Provider>;
+	const [username, setUsername] = useState('');
+	const [nickname, setNickname] = useState('');
+
+	const {
+		authenticate,
+		isAuthenticated,
+		enableWeb3,
+		Moralis,
+		user,
+		isWeb3Enabled,
+	} = useMoralis;
+
+	useEffect(() => {
+		(async () => {
+			if (isAuthenticated) {
+				const currentUsername = await user?.get('nickname');
+				setUsername(currentUsername);
+			}
+		})();
+	}, [isAuthenticated, user, username]);
+
+	const handleSetUsername = () => {
+		if (user) {
+			if (nickname) {
+				user.set('nickname', nickname);
+				user.save();
+				setNickname('');
+			} else {
+				console.log("Can't set empty Nickname...");
+			}
+		}
+	};
+
+	return (
+		<AmazonContext.Provider
+			value={{
+				isAuthenticated,
+				nickname,
+				setNickname,
+				username,
+				handleSetUsername,
+			}}
+		>
+			{children}
+		</AmazonContext.Provider>
+	);
 };
